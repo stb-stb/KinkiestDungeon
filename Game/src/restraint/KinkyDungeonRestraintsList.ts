@@ -3871,7 +3871,7 @@ const KinkyDungeonRestraints: restraint[] = [
 		vibeLocation: "ItemNipples",
 		Model: "NippleClamps",
 		limited: true,
-		escapeChance: {"Struggle": -10, "Cut": -0.05, "Remove": 0.5, "Pick": 0.25}, failSuffix: {"Struggle": "Clamps"},
+		escapeChance: {"Struggle": -10, "Cut": -0.05, "Remove": 0.5, "Pick": undefined}, failSuffix: {"Struggle": "Clamps"},
 		maxwill: 1.0, enemyTags: {"dressRestraints" : 5, "toyTease": 2, "genericToys": 5, "maidRestraints": 3, "maidRestraintsLight": 1, "roboAngry": 10, "teasetoys": 3}, playerTags: {"NoVibes": -1000}, minLevel: 0, maxLevel: 8, allFloors: true, shrine: ["Vibes", "Toys"], linkedVibeTags: ["teaser", "piercings"],
 		events: [
 			{trigger:"playerAttack",  type: "MotionSensitive", chance: 0.5, msg: "KDPunishAttack", inheritLinked: true},
@@ -3891,7 +3891,7 @@ const KinkyDungeonRestraints: restraint[] = [
 	{inventory: true, arousalMode: true, name: "NippleWeights", Asset: "HeartPasties", Color: "Default", Group: "ItemNipples", power: 4, weight: 0,
 		Model: "NippleWeights",
 		limited: true,
-		escapeChance: {"Struggle": -10, "Cut": -0.05, "Remove": 0.5, "Pick": 0.25}, failSuffix: {"Struggle": "Clamps"},
+		escapeChance: {"Struggle": -10, "Cut": -0.05, "Remove": 0.5, "Pick": undefined}, failSuffix: {"Struggle": "Clamps"},
 		maxwill: 1.0, enemyTags: {"obsidianRestraints" : 3, "bandit": 0.1, "genericToys": 1, "toyTease": 2}, playerTags: {"NoVibes": -1000}, minLevel: 3, allFloors: true, shrine: ["Weights", "Toys"],
 		events: [
 			{trigger:"sprint",  type: "NippleWeights", chance: 0.5, mult: 0.25, msg: "KDNippleWeights", inheritLinked: true},
@@ -3903,7 +3903,7 @@ const KinkyDungeonRestraints: restraint[] = [
 		vibeLocation: "ItemNipples",
 		Model: "RingVibes",
 		limited: true,
-		escapeChance: {"Struggle": -10, "Cut": -0.05, "Remove": 0.5, "Pick": 0.25}, failSuffix: {"Struggle": "Clamps"},
+		escapeChance: {"Struggle": -10, "Cut": -0.05, "Remove": 0.5, "Pick": undefined}, failSuffix: {"Struggle": "Clamps"},
 		maxwill: 0.25, enemyTags: {"dressRestraints" : 1, "genericToys": 1, "maidRestraints": 1, "roboAngry": 10, "teasetoys": 1, "toyTeaseIntense": 2}, playerTags: {"NoVibes": -1000}, minLevel: 8, allFloors: true, shrine: ["Vibes", "Toys"], linkedVibeTags: ["teaser", "piercings"],
 		events: [
 			{trigger:"playerAttack",  type: "MotionSensitive", chance: 1.0, msg: "KDPunishAttack", inheritLinked: true},
@@ -7544,7 +7544,7 @@ const KinkyDungeonRestraints: restraint[] = [
 		events: [
 			{type: "Buff", trigger: "tick", power: 0.11, buffType: "SprintEfficiency"},
 		],
-		escapeChance: {"Struggle": 1, "Cut": 1, "Remove": 1, "Pick": 1}, enemyTags: {}, playerTags: {}, minLevel: 0, floors: KDMapInit([]), shrine: []},
+		escapeChance: {"Struggle": 1, "Cut": 1, "Remove": 1, "Pick": undefined}, enemyTags: {}, playerTags: {}, minLevel: 0, floors: KDMapInit([]), shrine: []},
 	{inventory: true, removePrison: true, alwaysKeep: true, showInQuickInv: true, good: true,
 		name: "GasMask", debris: "Belts", accessible: true,
 		Asset: "GasMask", Color: "#ff00ff", Group: "ItemMouth", gag: 0.4, power: 1, weight: 0,
@@ -7576,7 +7576,7 @@ const KinkyDungeonRestraints: restraint[] = [
 			{type: "Buff", trigger: "tick", power: .25, buffType: "holyDamageResist"},
 			{type: "Buff", trigger: "tick", power: 1.5, buffType: "blindResist"},
 		],
-		escapeChance: {"Struggle": 0.25, "Cut": -0.25, "Remove": 10, "Pick": 0.9}, enemyTags: {}, playerTags: {}, minLevel: 0, floors: KDMapInit([]), shrine: []},
+		escapeChance: {"Struggle": 0.25, "Cut": -0.25, "Remove": 10, "Pick": undefined}, enemyTags: {}, playerTags: {}, minLevel: 0, floors: KDMapInit([]), shrine: []},
 	{inventory: true, removePrison: true, alwaysKeep: true, showInQuickInv: true, good: true,
 		name: "Sunglasses2", accessible: true,
 		Asset: "Sunglasses", Color: "White", Group: "ItemHead", power: 1, weight: 0,
@@ -7596,7 +7596,7 @@ const KinkyDungeonRestraints: restraint[] = [
 			{type: "Buff", trigger: "tick", power: .25, buffType: "holyDamageResist"},
 			{type: "Buff", trigger: "tick", power: 1.5, buffType: "blindResist"},
 		],
-		escapeChance: {"Struggle": 0.25, "Cut": -0.25, "Remove": 10, "Pick": 0.9}, enemyTags: {}, playerTags: {}, minLevel: 0, floors: KDMapInit([]), shrine: []},
+		escapeChance: {"Struggle": 0.25, "Cut": -0.25, "Remove": 10, "Pick": undefined}, enemyTags: {}, playerTags: {}, minLevel: 0, floors: KDMapInit([]), shrine: []},
 	{inventory: true, removePrison: true, name: "BasicLeash", tether: 2.9, Asset: "CollarLeash", Color: "Default", Group: "ItemNeckRestraints",
 		leash: true, power: 1, weight: -99, harness: true,
 		Model: "Leash",
