@@ -1018,6 +1018,7 @@ function KDConveyor(_delta: number, X: number, Y: number, unwilling?: boolean) {
 				KinkyDungeonSetFlag("conveyed_rec", 3);
 				KDMovePlayer(X + (tile.DX || 0), Y + (tile.DY || 0), false, false, true);
 				KinkyDungeonSendTextMessage(4, TextGet("KDConveyorPush"), "#ffff44", 2);
+				KDGameData.SlowMoveTurns = Math.max(KDGameData.SlowMoveTurns, ( Math.ceil(KDRandom()*2+0.2)));
 			}
 		} else if (!KDIsImmobile(entity) && !KDIsFlying(entity) && !entity.Enemy.tags.ignoreconveyor && !entity.Enemy.ethereal
 			&& !((entity.Enemy.tags.unstoppable && (!KinkyDungeonIsDisabled(entity) || !KinkyDungeonIsSlowed(entity)))
