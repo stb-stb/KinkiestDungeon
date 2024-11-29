@@ -2379,8 +2379,15 @@ function KDDrawMinimap(MinimapX: number, MinimapY: number) {
  */
 function KDDrawPartyMembers(PartyX: number, PartyY: number, tooltips: object[]) {
 	if (KDGameData.Party && KinkyDungeonDrawState == "Game") {
+		if (!KDToggleShowAllBuffs) {
+			PartyY = 62;
+			PartyX = 565;
+		}  else {
+			PartyY = 355;
+			PartyX = 565;
+		}
 		let PartyDy = 72;
-		let PartyPad = 8;
+		let PartyPad = 5;
 		let zIndex = KDToggleShowAllBuffs ? 149 : 152;
 
 		for (let i = 0; i < KDGameData.Party.length; i++) {

@@ -518,7 +518,7 @@ let KDJourney = "";
 
 let KDOptOut = false;
 
-let KDDefaultMaxParty = 3;
+let KDDefaultMaxParty = 5;
 
 
 let KDDefaultJourney = ["grv", "cat", "jng", "tmp", "bel"];

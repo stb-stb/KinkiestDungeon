@@ -28,7 +28,7 @@ let KDFacilityTypes: Record<string, Facility> = {
 		prereq: () => {return true;},
 		goldCost: () => {return 0;},
 		maxPrisoners: () => {return 0;},
-		maxServants: () => {return 3;},
+		maxServants: () => {return 5;},
 		defaultData: {},
 		ping: (XXQuik: number, YYQuik: number, quikCurrentCol: number, quikSpacing: number, quikSize: number) => {
 			let facility = "Management";
@@ -80,8 +80,8 @@ let KDFacilityTypes: Record<string, Facility> = {
 		},
 		prereq: () => {return true;},
 		goldCost: () => {return 0;},
-		maxPrisoners: () => {return 8;},
-		maxServants: () => {return 8;},
+		maxPrisoners: () => {return 11;},
+		maxServants: () => {return 11;},
 		defaultData: {},
 	},
 	Warden: {
