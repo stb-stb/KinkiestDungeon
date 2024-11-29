@@ -2587,7 +2587,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDTextGray0,
-			size: 20,
+			size: 18,
 		});
 	}
 	if (block_magic) {
@@ -2597,7 +2597,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDTextGray0,
-			size: 20,
+			size: 18,
 		});
 	}
 	if (armor) {
@@ -2607,7 +2607,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDTextGray0,
-			size: 20,
+			size: 18,
 		});
 	}
 	if (spellResist) {
@@ -2617,7 +2617,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDTextGray0,
-			size: 20,
+			size: 18,
 		});
 	}
 	/*if (evasion != 1.0) {
@@ -2635,7 +2635,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	} else if (enemy.Enemy.tags.unflinching) {
 		let st = TextGet("KDunflinching");
@@ -2643,7 +2643,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	} else if (enemy.Enemy.tags.relentless) {
 		let st = TextGet("KDrelentless");
@@ -2651,7 +2651,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	}
 	if (KDEntityBlocksExp(enemy)) {
@@ -2660,7 +2660,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	}
 	if (KDAbsoluteArmor(enemy)) {
@@ -2669,7 +2669,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	} else if (KDToughArmor(enemy)) {
 		let st = TextGet("KDToughArmor");
@@ -2677,7 +2677,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	}
 	if (KinkyDungeonGetBuffedStat(enemy.buffs, "StunResist")) {
@@ -2686,7 +2686,7 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 			str: st,
 			fg: KDBaseWhite,
 			bg: KDBaseBlack,
-			size: 20,
+			size: 18,
 		});
 	}
 
@@ -2769,20 +2769,20 @@ function KDDrawEnemyTooltip(enemy: entity, offset: number, showExtra: boolean): 
 				size: 20,
 			});
 
-			for (let i = 0; i < 6 && i < items.length; i++) {
+			for (let i = 0; i < 3 && i < items.length; i++) {
 				TooltipList.push({
 					str: KDGetItemName(items[i], Restraint),
 					fg: KDBaseWhite,
 					bg: KDBaseBlack,
-					size: 18,
+					size: 16,
 				});
 			}
-			if (items.length > 6) {
+			if (items.length > 3) {
 				TooltipList.push({
 					str: TextGet("KDTooltipInventoryFull").replace("NUMBER", "" + (items.length - 6)),
 					fg: KDBaseWhite,
 					bg: KDBaseBlack,
-					size: 18,
+					size: 16,
 				});
 			}
 

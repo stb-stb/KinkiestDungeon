@@ -995,8 +995,8 @@ let KDNPCChar_ID: Map<Character, number> = new Map();
 let KDNPCStyle = new Map();
 let KDCollectionSelected = 0;
 let KDCollectionIndex = 0;
-let KDCollectionGuestRows = 2;
-let KDCollectionRows = 6;
+let KDCollectionGuestRows = 3;
+let KDCollectionRows = 5;
 let KDCollectionColumns = 10;
 let KDCollectionSpacing = 80;
 
