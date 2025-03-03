@@ -871,7 +871,7 @@ function KinkyDungeonRemoveRestraintsWithShrine(shrine: string, maxCount?: numbe
 
 
 	KinkyDungeonSendEvent("postRemoval", {item: null, keep: Keep, shrine: false, Link: false, dynamic: true, Character: KinkyDungeonPlayer});
-				
+
 	return count;
 }
 
@@ -5638,7 +5638,7 @@ function KDSuccessRemove(StruggleType: string, restraint: item, lockType: KDLock
 				+ ((KDGetFinishEscapeSFX(restraint) && KDGetFinishEscapeSFX(restraint).Struggle) ? KDGetFinishEscapeSFX(restraint).Struggle : "Struggle")
 				+ ".ogg");
 		}
-		if (KDRandom() < data.destroyChance) {
+		if (KDRandom()*1.3 < data.destroyChance) {
 			if (KDAlwaysKeep({name: restraint.name, id: 0}, KinkyDungeonPlayerEntity)) {
 				KinkyDungeonSendTextMessage(9, TextGet("KinkyDungeonStruggleCutDestroyFail").replace("TargetRestraint", TextGet("Restraint" + restraint.name)), KDBaseRed, 2,
 					false, false, undefined, "Struggle");
@@ -7212,12 +7212,12 @@ function KDSwapEvents(events: KinkyDungeonEvent[], oldRestraint: restraint, newR
 		}
 	}
 
-	
+
 	if (KDRestraint(newRestraint)?.events) {
 		for (let i = KDRestraint(newRestraint).events.length - 1; i >= 0; i--) {
 			events.unshift(KDRestraint(newRestraint).events[i]);
 		}
 	}
-	
+
 	return events;
 }
