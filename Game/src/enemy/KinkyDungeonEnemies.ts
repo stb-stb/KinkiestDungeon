@@ -3167,12 +3167,13 @@ function KinkyDungeonEnemyCheckHP(enemy: entity, E: number, mapData: KDMapDataTy
 				if (!KDEntityHasFlag(enemy, "killedOnce")) {
 					KinkyDungeonSetEnemyFlag(enemy, "killedOnce", -1);
 					if (enemy.Enemy && enemy.Enemy.tags && enemy.Enemy.tags.boss)
-						KinkyDungeonChangeRep("Ghost", -3);
+						KinkyDungeonChangeRep("Ghost", -5);
 					else if (enemy.Enemy && enemy.Enemy.tags && enemy.Enemy.tags.miniboss)
+						KinkyDungeonChangeRep("Ghost", -2);
+					else if (enemy.Enemy && enemy.Enemy.tags && enemy.Enemy.tags.elite)
 						KinkyDungeonChangeRep("Ghost", -1);
-					else if (enemy.Enemy && enemy.Enemy.tags && enemy.Enemy.tags.elite && KDRandom() < 0.33)
+					else if (enemy.Enemy && enemy.Enemy.tags && enemy.Enemy.tags.imprisonable && KDRandom() < 0.33)
 						KinkyDungeonChangeRep("Ghost", -1);
-
 
 
 					if (enemy.rep)

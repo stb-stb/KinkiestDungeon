@@ -1343,7 +1343,7 @@ function KDAllyDialogue(name: string, requireTags: string[], requireSingleTag: s
 						if (!KDEnemyHasFlag(enemy, "NoHelpCommandWord")
 							&& KDRandom() < (KDPersonalitySpread(125, 85, 25) - KinkyDungeonGoddessRep.Ghost + KDGetModifiedOpinion(enemy, true, true, true) + (KinkyDungeonStatsChoice.get("Dominant") ? 25 : 0))/100 * (KDPersonalitySpread(0.0, -0.25, -0.5) + (KDAllied(enemy) ? 2.0 : 1.0))
 						) {
-							KinkyDungeonChangeRep("Ghost", 3);
+							KinkyDungeonChangeRep("Ghost", 2);
 							if (KinkyDungeonPlayerGetRestraintsWithLocks(KDMagicLocks).length > 0) {
 								for (let r of KinkyDungeonPlayerGetRestraintsWithLocks(KDMagicLocks, true)) {
 									KinkyDungeonLock(r, "");
@@ -1387,7 +1387,7 @@ function KDAllyDialogue(name: string, requireTags: string[], requireSingleTag: s
 						if (!KDEnemyHasFlag(enemy, "NoHelpKey")
 							&& KDRandom() < (KDPersonalitySpread(125, 85, 25) - KinkyDungeonGoddessRep.Ghost + KDGetModifiedOpinion(enemy, true, true, true) + (KinkyDungeonStatsChoice.get("Dominant") ? 25 : 0))/100 * (KDPersonalitySpread(0.0, -0.25, -0.5) + (KDAllied(enemy) ? 2.0 : 1.0))
 						) {
-							KinkyDungeonChangeRep("Ghost", 3);
+							KinkyDungeonChangeRep("Ghost", 2);
 							KDAddConsumable("RedKey", 1);
 							if (KDSoundEnabled()) AudioPlayInstantSoundKD(KinkyDungeonRootDirectory + "Audio/Coins.ogg");
 							enemy.items.splice(enemy.items.indexOf("RedKey"), 1);
@@ -1545,7 +1545,7 @@ function KDRecruitDialogue (
 						clickFunction: (_gagged, _player) => {
 							KDPleaseSpeaker(0.5);
 							let enemy = KinkyDungeonFindID(KDGameData.CurrentDialogMsgID);
-							KinkyDungeonChangeRep("Ghost", 2);
+							KinkyDungeonChangeRep("Ghost", 1);
 							for (let i = 0; i < restraintscount; i++) {
 								let r = KinkyDungeonGetRestraint({tags: restraints}, MiniGameKinkyDungeonLevel * 2 + KDGetOfferLevelMod(), KDCurrIndex());
 								if (r) KinkyDungeonAddRestraintIfWeaker(r, ((enemy ? Math.min(10, enemy.Enemy.power) + KDEnemyRank(enemy) : 0) || 0), true, undefined, true, false, undefined, KDGetSpeakerFaction(), KinkyDungeonStatsChoice.has("MagicHands") ? true : undefined);
