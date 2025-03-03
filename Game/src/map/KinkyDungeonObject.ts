@@ -830,7 +830,7 @@ function KDDrawOrb() {
 
 	DrawButtonKDEx("orbspellrandom", (_b) => {
 		let shrine = Object.keys(KinkyDungeonShrineBaseCosts)[Math.floor(KDRandom() * Object.keys(KinkyDungeonShrineBaseCosts).length)];
-		KDSendInput("orb", {shrine: shrine, Amount: 1, Rep: 0.9 * KinkyDungeonMultiplicativeStat(KDEntityBuffedStat(KinkyDungeonPlayerEntity, "DivinePrivilege")), x: KDOrbX, y: KDOrbY});
+		KDSendInput("orb", {shrine: shrine, Amount: 1, Rep: 0.6 * KinkyDungeonMultiplicativeStat(KDEntityBuffedStat(KinkyDungeonPlayerEntity, "DivinePrivilege")), x: KDOrbX, y: KDOrbY});
 		KinkyDungeonDrawState = "Game";
 		KDResetAlternateInventoryRender();
 		return true;

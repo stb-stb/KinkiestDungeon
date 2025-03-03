@@ -781,7 +781,7 @@ let KDInputTypes: Record<string, (data: any) => string> = {
 				x: data.x,
 				y: data.y,
 				shrine: data.shrine,
-				punish: KinkyDungeonGoddessRep[data.shrine] < -45,
+				punish: KinkyDungeonGoddessRep[data.shrine] < KDRandom()*75 -45,
 				inputdata: data,
 				rep: (data.Rep || data.Amount) * -10,
 			};
@@ -818,7 +818,11 @@ let KDInputTypes: Record<string, (data: any) => string> = {
 				}
 				let restraintAdd = KinkyDungeonGetRestraintByName(tag);
 				if (restraintAdd) {
-					KinkyDungeonAddRestraintIfWeaker(restraintAdd, 10, true, "Gold", false, false, undefined, undefined, true);
+					if (KinkyDungeonGoddessRep[data.shrine] < KDRandom()*75 -45) {
+							KinkyDungeonAddRestraintIfWeaker(restraintAdd, 10, true, "Gold", false, false, undefined, undefined, true);
+						} else {
+							KinkyDungeonAddRestraintIfWeaker(restraintAdd, 10, true, "White", false, false, undefined, undefined, true);
+						}
 					KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonGoddessCollar").replace("TYPE", TextGet("KinkyDungeonShrine" + data.shrine)).replace("RESTRAINT", TextGet("Restraint" + tag)), KDBaseLightBlue, 2);
 				}
 			}
@@ -1199,7 +1203,7 @@ let KDInputTypes: Record<string, (data: any) => string> = {
 				} else if (KinkyDungeonIsPlayer()) KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonSpellsNotEnoughMana"), "#b4dbfc", 1);
 			} else if (KinkyDungeonIsPlayer()) KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonSpellsNotEnoughPoints"), "#e7cf1a", 1);
 		} else if (KinkyDungeonIsPlayer()) KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonSpellsNotPrerequisite").replace("REQUIREDSPELL", TextGet("KinkyDungeonSpell" + spell.prerequisite)), "#ff4444", 1);
-		
+
 		return "";
 	},
 	"tabletInteract": (data) => {
@@ -1486,7 +1490,7 @@ let KDInputTypes: Record<string, (data: any) => string> = {
  */
 function KDProcessInput(type: string, data: any): string {
 	KDUpdateEnemyCache = true;
-	
+
 	if (KDInputTypes[type]) {
 		KDInputTypes[type](data);
 	}
