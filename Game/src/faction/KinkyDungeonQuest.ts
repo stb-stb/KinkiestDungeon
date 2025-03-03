@@ -1238,7 +1238,7 @@ function KDGenQuestTemplate(Name: string, Icon: string, Goddess: string, spawnFu
 					DontPreferWill: false,
 					Keep: true,
 				});
-				for (let i = 0; i < 2; i++) {
+				for (let i = 0; i < 1; i++) {
 					KDPlayerEffectRestrain(undefined, 1, restraintsTags, "Goddess", false, true, false, false, false, "Divine", {
 						Progressive: true,
 						ProgressiveSkip: true,
@@ -1279,7 +1279,7 @@ function KDGenQuestTemplate(Name: string, Icon: string, Goddess: string, spawnFu
 						return;
 					}
 				}
-				for (let i = 0 ; i < 3; i++) {
+				for (let i = 0 ; i < 5; i++) {
 					KinkyDungeonLoot(KDGetEffLevel(), KDCurrIndex(), Name);
 				}
 				KinkyDungeonPlaySound(KinkyDungeonRootDirectory + "Audio/" + "Magic" + ".ogg");

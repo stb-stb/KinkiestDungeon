@@ -31,7 +31,7 @@ let KinkyDungeonEscapeTypes: Record<string, KinkyDungeonEscapeType> = {
 	"Key": {
 		selectValid: true,
 		worldgenstart: () => {
-			let quota = 1;
+			let quota = 2;
 			if (KinkyDungeonStatsChoice.get("escapekey")) {
 				KDMapData.KeyQuota = quota;
 			} else {
@@ -348,7 +348,7 @@ let KinkyDungeonEscapeTypes: Record<string, KinkyDungeonEscapeType> = {
 					}
 				}
 			}
-			let quota = 5;
+			let quota = 7;
 			if (KinkyDungeonStatsChoice.get("extremeMode")) {
 				quota = 9;
 			}
@@ -394,7 +394,7 @@ let KinkyDungeonEscapeTypes: Record<string, KinkyDungeonEscapeType> = {
 					}
 				}
 			}
-			let quota = 10;
+			let quota = 15;
 			if (KinkyDungeonStatsChoice.get("extremeMode")) {
 				quota = 20;
 			}
@@ -430,7 +430,7 @@ let KinkyDungeonEscapeTypes: Record<string, KinkyDungeonEscapeType> = {
 		selectValid: true,
 		requireMaxQuests: true,
 		worldgenstart: () => {
-			let quota = 1;
+			let quota = 2;
 			if (KinkyDungeonStatsChoice.get("extremeMode")) quota = 3;
 			else if (KinkyDungeonStatsChoice.get("hardMode")) quota = 2;
 			let data = {number: quota};

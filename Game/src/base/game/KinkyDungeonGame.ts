@@ -13,7 +13,7 @@ let KDFocusableTextFields = [
 
 let KDSlowedSprintCost = 5.0;
 
-let KDMAXGODDESSQUESTS = 3;
+let KDMAXGODDESSQUESTS = 5;
 
 let KDBalanceSprintMult = 3;
 let KDBalanceInertiaMult = 1.5;
@@ -2321,7 +2321,7 @@ function KinkyDungeonGameKeyDown() {
 				case KinkyDungeonKeyMenu[6]: KinkyDungeonDrawState = "Collection"; break;
 				case KinkyDungeonKeyMenu[7]: KinkyDungeonDrawState = "Facilities"; break;
 				case KinkyDungeonKeyMenu[9]: {
-					KinkyDungeonDrawState = "JourneyMap"; 
+					KinkyDungeonDrawState = "JourneyMap";
 					KDGameData.UseJourneyTarget = false;
 					break;}
 				case KinkyDungeonKeySkip[0]:
@@ -2719,8 +2719,7 @@ function KDPlayerCanMove(player, x, y) {
 	return KinkyDungeonGetMovable().includes(KinkyDungeonMapGet(x, y));
 }
 
-function KinkyDungeonMove(moveDirection: {x: number, y: number }, delta: number, AllowInteract: boolean, SuppressSprint?: boolean,
-	forceSprint?: boolean): boolean {
+function KinkyDungeonMove(moveDirection: {x: number, y: number }, delta: number, AllowInteract: boolean, SuppressSprint?: boolean, forceSprint?: boolean): boolean {
 	let moveX = moveDirection.x + KinkyDungeonPlayerEntity.x;
 	let moveY = moveDirection.y + KinkyDungeonPlayerEntity.y;
 	let moved = false;
@@ -2812,7 +2811,6 @@ function KinkyDungeonMove(moveDirection: {x: number, y: number }, delta: number,
 					KinkyDungeonNoMoveFlag = false;
 					KinkyDungeonConfirmStairs = false;
 					KinkyDungeonSendEvent("beforeMove", {x:moveX, y:moveY});
-					let sprintcost = KDSprintCost();
 					if (!KinkyDungeonNoMoveFlag) {
 						//if (KinkyDungeonHasStamina(0)) { // You can only move if your stamina is > 0
 						if (isNaN(KDGameData.MovePoints)) KDGameData.MovePoints = 0;
@@ -2852,12 +2850,11 @@ function KinkyDungeonMove(moveDirection: {x: number, y: number }, delta: number,
 
 						let willSprint = (forceSprint || KinkyDungeonToggleAutoSprint) && !SuppressSprint;
 
-						if (KDGameData.MovePoints >= 1 || (willSprint && KDCanSprint(sprintcost))) {// Math.max(1, KinkyDungeonSlowLevel) // You need more move points than your slow level, unless your slow level is 1
+						if (KDGameData.MovePoints >= 1 || (willSprint && KDCanSprint())) {// Math.max(1, KinkyDungeonSlowLevel) // You need more move points than your slow level, unless your slow level is 1
 							let xx = KinkyDungeonPlayerEntity.x;
 							let yy = KinkyDungeonPlayerEntity.y;
 
-							newDelta = Math.max(newDelta, KinkyDungeonMoveTo(moveX, moveY,
-								willSprint, allowPass, sprintcost));
+							newDelta = Math.max(newDelta, KinkyDungeonMoveTo(moveX, moveY, willSprint, allowPass));
 							if (newDelta > 0) {
 								if (Enemy && allowPass) {
 									KDMoveEntity(Enemy, xx, yy, true,undefined, undefined, true);
@@ -2928,8 +2925,9 @@ function KinkyDungeonMove(moveDirection: {x: number, y: number }, delta: number,
 								}
 							}
 						} else {
-							KinkyDungeonWaitMessage(false, quick ? 0 : 1, KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax);
-
+							if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax) {
+								KinkyDungeonWaitMessage(false, quick ? 0 : 1);
+							}
 							KDGameData.MovePoints = Math.min(KDGameData.MovePoints + 1, 0);
 						}
 						/*if (moved) {
@@ -3063,26 +3061,22 @@ function KinkyDungeonMove(moveDirection: {x: number, y: number }, delta: number,
 	return moved;
 }
 
-function KinkyDungeonWaitMessage(NoTime: boolean, delta: number, msg: boolean = true): void {
+function KinkyDungeonWaitMessage(NoTime: boolean, delta: number): void {
 	if (!KDIsAutoAction()) {
-		if (msg) {
-			if (KinkyDungeonStatWillpowerExhaustion > 1) KinkyDungeonSendActionMessage(3, TextGet("WaitSpellExhaustion"), "orange", 2);
-			else if (!KinkyDungeonHasStamina(2.5, false)) KinkyDungeonSendActionMessage(1, TextGet("WaitExhaustion"
-				+ (KinkyDungeonStatDistraction > KinkyDungeonStatDistractionMax*0.33 ?
-					((KinkyDungeonStatDistraction > KinkyDungeonStatDistractionMax*0.67 ?
-						"ArousedHeavy"
-						: "Aroused"))
-						: "")), "yellow", 2);
-			else KinkyDungeonSendActionMessage(1, TextGet("Wait" + (KinkyDungeonStatDistraction > 12 ? "Aroused" : "")), "silver", 2,
-				undefined, undefined, undefined, "Action");
-		}
-
+		if (KinkyDungeonStatWillpowerExhaustion > 1) KinkyDungeonSendActionMessage(3, TextGet("WaitSpellExhaustion"), "orange", 2);
+		else if (!KinkyDungeonHasStamina(2.5, false)) KinkyDungeonSendActionMessage(1, TextGet("WaitExhaustion"
+			+ (KinkyDungeonStatDistraction > KinkyDungeonStatDistractionMax*0.33 ?
+				((KinkyDungeonStatDistraction > KinkyDungeonStatDistractionMax*0.67 ?
+					"ArousedHeavy"
+					: "Aroused"))
+					: "")), "yellow", 2);
+		else KinkyDungeonSendActionMessage(1, TextGet("Wait" + (KinkyDungeonStatDistraction > 12 ? "Aroused" : "")), "silver", 2,
+			undefined, undefined, undefined, "Action");
 	}
 
 	if (!NoTime && delta > 0) {
 		if (!KDGameData.Wait) KDGameData.Wait = 0;
 		KDGameData.Wait += delta;
-		KDSetIDFlag(KDPlayer().id, "negativeSlowLevel", 0);
 	}
 
 	KinkyDungeonLastAction = "Wait";
@@ -3094,7 +3088,7 @@ function KinkyDungeonWaitMessage(NoTime: boolean, delta: number, msg: boolean = 
  * Returns th number of turns that must elapse
  * Sets MovePoints to 0
  */
-function KinkyDungeonMoveTo(moveX: number, moveY: number, willSprint: boolean, _allowPass: boolean, sprintCost?: number) {
+function KinkyDungeonMoveTo(moveX: number, moveY: number, willSprint: boolean, _allowPass: boolean) {
 	//if (KinkyDungeonNoEnemy(moveX, moveY, true)) {
 	let stepOff = false;
 	let xx = KinkyDungeonPlayerEntity.x;
@@ -3119,7 +3113,7 @@ function KinkyDungeonMoveTo(moveX: number, moveY: number, willSprint: boolean, _
 		KinkyDungeonSetFlag("BlockQuicknessPerk", 4);
 	}
 	if (!cencelled && willSprint) {
-		if (KDCanSprint(sprintCost)) {
+		if (KDCanSprint()) {
 			let unblocked = KinkyDungeonSlowLevel > 1 || KDGameData.MovePoints < 0;
 			if (!unblocked) {
 				let nextPosX = moveX*2 - xx;
@@ -3138,7 +3132,7 @@ function KinkyDungeonMoveTo(moveX: number, moveY: number, willSprint: boolean, _
 					sprintCost: 0,
 				};
 
-				data.sprintCost = KDSprintCost(data, sprintCost);
+				data.sprintCost = KDSprintCost(data);
 
 				KinkyDungeonSendEvent("sprint", data);
 
@@ -3176,16 +3170,15 @@ function KDBalanceSprint() {
 	return KDGameData.Balance >= threshold;
 }
 
-function KDCanSprint(cost?: number) {
+function KDCanSprint() {
 	let data = {
 		canSprint: KDBalanceSprint(),
 		mustStand: true,
 		mustNotBeSlow: true,
-		cost: cost != undefined ? cost : KDSprintCost()
 	};
 	KinkyDungeonSendEvent("canSprint", data);
 	return data.canSprint && (!data.mustNotBeSlow || KinkyDungeonSlowLevel < 4)
-		&& KinkyDungeonHasStamina(-data.cost)
+		&& KinkyDungeonHasStamina(KDSprintCostBase + KDSprintCostSlowLevel[Math.min(Math.round(KinkyDungeonSlowLevel), KDSprintCostSlowLevel.length)])
 		&& (!data.mustStand || (KinkyDungeonCanStand() && !KDForcedToGround()));
 }
 
@@ -3662,8 +3655,8 @@ function KDAddAppearance (
 		C.Appearance.push(NA);
 		return NA;
 	}
-	
-		
+
+
 	return null;
 }
 
@@ -4078,10 +4071,10 @@ function KDSprintCost(sprintdata?: any, sprintCost?: number, accountForSlow: boo
 		boost: 0,
 		sprintCostOverride: sprintCost,
 	};
-	data.cost = (-KDSprintCostBase - KDSprintCostSlowLevel[Math.min(KDSprintCostSlowLevel.length, 
+	data.cost = (-KDSprintCostBase - KDSprintCostSlowLevel[Math.min(KDSprintCostSlowLevel.length,
 		Math.round(KinkyDungeonSlowLevel))] + (
-			(accountForSlow && KinkyDungeonSlowLevel > 1) ? -KDSprintAdjustSlowed : 0
-		));
+		(accountForSlow && KinkyDungeonSlowLevel > 1) ? -KDSprintAdjustSlowed : 0
+	));
 	if (KDGameData.MovePoints < 0) data.cost -= KDSlowedSprintCost;
 
 
