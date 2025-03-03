@@ -561,7 +561,7 @@ let KDCommanderOrders: Record<string, KDCommanderOrder> = {
 							&& !KinkyDungeonVisionGet(xxx, yyy)) {
 							let checkpoint = KDStationedChokepointsDist[xxx + ',' + yyy];
 							let trap = !KDEffectTileTags(xxx, yyy).trap ? KDGetTrapSpell(enemy, xxx, yyy, checkpoint) : "";
-							if (trap && KDRandom() < (checkpoint ? 0.5 : (cpOverride ? 0.03 : 0))) {
+							if (trap && KDRandom() < (checkpoint ? 0.5 : (cpOverride ? 0.04 : 0))) {
 								//placed = true;
 								KinkyDungeonCastSpell(xxx, yyy, KinkyDungeonFindSpell(trap, true), enemy, undefined);
 							} else if (KinkyDungeonNoEnemy(xxx, yyy, true) && !(
