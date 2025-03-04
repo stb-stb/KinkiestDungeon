@@ -3034,7 +3034,7 @@ function KDDrawBuffIcons(minXX: number, minYY: number, statsDraw: Record<string,
 				}
 			}
 		} else {
-			if (((!KDMinBuffX && XX > minXX) || (KDMinBuffX && XX > KDMinBuffX)) && 
+			if (((!KDMinBuffX && XX > minXX) || (KDMinBuffX && XX > KDMinBuffX)) &&
 				(KDStatsSkipLine[currCategory] || KDStatsSkipLineBefore[stat.category]) && currCategory != stat.category) {
 
 				if (KDToggleShowAllBuffs) {
@@ -3147,8 +3147,8 @@ function KDDrawStruggleGroups() {
 			let renderButtons = () => {
 				if (item && (
 					((currentHighlightedItem && KDRestraint(currentHighlightedItem).Group == sg.group)
-					|| (!currentHighlightedItem && MouseIn(((!sg.left) ? (260) : 0), 
-					y, 
+					|| (!currentHighlightedItem && MouseIn(((!sg.left) ? (260) : 0),
+					y,
 					500, (ButtonWidth))))
 					|| KinkyDungeonDrawStruggle == KDDrawStruggleEnum.NONE
 					|| KinkyDungeonDrawStruggle == KDDrawStruggleEnum.STRUGGLE)) {
@@ -3211,10 +3211,10 @@ function KDDrawStruggleGroups() {
 
 
 				//if (MouseY < y) {
-				if (KDToggles.ShowRestraintOnHover || 
+				if (KDToggles.ShowRestraintOnHover ||
 					((currentHighlightedItem && KDRestraint(currentHighlightedItem).Group == sg.group)
 					|| MouseIn(0, 0, 250, 1000)))
-					KinkyDungeonDrawInventorySelected(KDGetItemPreview(item), false, true, 700);
+					KinkyDungeonDrawInventorySelected(KDGetItemPreview(item), false, true, 455);
 				//}
 				if (!currentHighlightedItem)
 					currentHighlightedItem = item;
@@ -3552,7 +3552,7 @@ function KDDrawStruggleGroups() {
 				if (item.tightness > 0 && !KDGetCurse(item) && (KDRestraint(item).escapeChance?.Struggle < 1 || KDRestraint(item).escapeChance?.Remove < 1)) {
 					if (!sg.blocked) {
 						let O = lastO;
-						DrawTextKD(TextGet("KDItemsTightness").replace("TTT",
+						DrawTextKD(TextGet("KDItemsTightness").replace(", and will get looser as you progress.",".").replace("TTT",
 							TextGet("KDTightness" + (KDRestraint(item)?.tightType || "") + KDTightnessRank(item.tightness))
 						), 530, MY + O * lineSize, KDBaseWhite, "#333333", fontSize, "left", 150); O++;
 					}
@@ -3565,19 +3565,19 @@ function KDDrawStruggleGroups() {
 
 
 				FillRectKD(kdcanvas, kdpixisprites, "selectedBG", {
-					Left: 510, Top: MY - 20, Width: 740,
+					Left: 510, Top: MY - 20, Width: 500,
 					Height: lastO * lineSize + 40,
 					Color: KDBaseBlack, alpha: 0.7, zIndex: 110
 				});
 			}
 
-			let mini = (KinkyDungeonDrawStruggle == KDDrawStruggleEnum.MOST && 
+			let mini = (KinkyDungeonDrawStruggle == KDDrawStruggleEnum.MOST &&
 				!((currentHighlightedItem && KDRestraint(currentHighlightedItem).Group == sg.group)
 				|| MouseIn(0, 0, 500, 1000)))
-				|| (KinkyDungeonDrawStruggle == KDDrawStruggleEnum.STRUGGLE && 
+				|| (KinkyDungeonDrawStruggle == KDDrawStruggleEnum.STRUGGLE &&
 					!(((currentHighlightedItem && KDRestraint(currentHighlightedItem).Group == sg.group)
-					|| MouseIn(((!sg.left) ? (260) : 0), 
-					y, 
+					|| MouseIn(((!sg.left) ? (260) : 0),
+					y,
 					500, (ButtonWidth))) || KinkyDungeonDrawStruggle > 2));
 
 			let color = KDBaseWhite;
