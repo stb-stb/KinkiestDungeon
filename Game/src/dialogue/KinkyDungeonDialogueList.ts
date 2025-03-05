@@ -1,10 +1,10 @@
 "use strict";
 
 let KDDialogueParams = {
-	ShopkeeperHelpFee: 230,
-	ShopkeeperHelpFeePerLevel: 70,
-	ShopkeeperHelpFeePerPower: 10,
-	ShopkeeperHelpFeeFreebiePower: 50,
+	ShopkeeperHelpFee: 100,
+	ShopkeeperHelpFeePerLevel: 50,
+	ShopkeeperHelpFeePerPower: 5,
+	ShopkeeperHelpFeeFreebiePower: 20,
 	ShopkeeperFee: 900,
 	ShopkeeperFeePerLevel: 100,
 	ShopkeeperFeePunishThresh: 2500,
@@ -662,7 +662,7 @@ let KDDialogue: Record<string, KinkyDialogue> = {
 				playertext: "Default", response: "Default",
 				gag: true,
 				clickFunction: (_gagged, _player) => {
-					let items = KinkyDungeonGetRestraintsWithShrine("BindingDress", true, 
+					let items = KinkyDungeonGetRestraintsWithShrine("BindingDress", true,
 						true, false, true);
 					// Get the most powerful item
 					let item = items.length > 0 ? items.reduce((prev, current) => (KinkyDungeonRestraintPower(prev, true) > KinkyDungeonRestraintPower(current, true)) ? prev : current) : null;
@@ -2882,7 +2882,7 @@ let KDDialogue: Record<string, KinkyDialogue> = {
 			KDGameData.CurrentDialogMsgValue = {
 				"RESCUECOST": Math.round(KDDialogueParams.ShopkeeperHelpFee + (KDDialogueParams.ShopkeeperHelpFeePerLevel * (KDGameData.HighestLevelCurrent || 1))
 					+ (KDDialogueParams.ShopkeeperHelpFeePerPower * (KDGetTotalRestraintPower(
-						KinkyDungeonPlayerEntity, ["Leather", "Latex", "Rope", "Metal"], [], true, false, false, false)
+						KinkyDungeonPlayerEntity, ["Leather", "Latex", "Rope", "Metal"], [], true, false, true, false)
 						|| 1))),
 			};
 			KDGameData.CurrentDialogMsgData = {
@@ -2898,10 +2898,11 @@ let KDDialogue: Record<string, KinkyDialogue> = {
 				},
 				clickFunction: (_gagged, _player) => {
 					KinkyDungeonGold -= KDGameData.CurrentDialogMsgValue.RESCUECOST;
-					KinkyDungeonRemoveRestraintsWithShrine("Rope", undefined, true, false, true, false, true);
-					KinkyDungeonRemoveRestraintsWithShrine("Leather", undefined, true, false, true, false, true);
-					KinkyDungeonRemoveRestraintsWithShrine("Metal", undefined, true, false, true, false, true);
-					KinkyDungeonRemoveRestraintsWithShrine("Latex", undefined, true, false, true, false, true);
+					let total = 4;
+					total -= KinkyDungeonRemoveRestraintsWithShrine("Metal", Math.min(2, total), true, false, true, false, true);
+					total -= KinkyDungeonRemoveRestraintsWithShrine("Latex", Math.min(2, total), true, false, true, false, true);
+					total -= KinkyDungeonRemoveRestraintsWithShrine("Leather", Math.min(2, total), true, false, true, false, true);
+					total -= KinkyDungeonRemoveRestraintsWithShrine("Rope", Math.min(2, total), true, false, true, false, true);
 					return false;
 				},
 				options: {
@@ -3291,13 +3292,13 @@ let KDDialogue: Record<string, KinkyDialogue> = {
 					});
 				},
 				clickFunction: (_gagged, _player) => {
-					if (KinkyDungeonGetRestraintsWithShrine("Metal", true, 
+					if (KinkyDungeonGetRestraintsWithShrine("Metal", true,
 						true, false, false, true).length > 0
-						|| KinkyDungeonGetRestraintsWithShrine("Latex", true, 
+						|| KinkyDungeonGetRestraintsWithShrine("Latex", true,
 							true, false, false, true).length > 0
-						|| KinkyDungeonGetRestraintsWithShrine("Leather", true, 
+						|| KinkyDungeonGetRestraintsWithShrine("Leather", true,
 							true, false, false, true).length > 0
-						|| KinkyDungeonGetRestraintsWithShrine("Rope", true, 
+						|| KinkyDungeonGetRestraintsWithShrine("Rope", true,
 							true, false, false, true).length > 0) {
 						let e = KDGetSpeaker();
 						KDStartDialog("ShopkeeperOfferHelp", e.Enemy.name, true, e.personality, e);
