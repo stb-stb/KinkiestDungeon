@@ -3682,10 +3682,10 @@ let KDDialogue: Record<string, KinkyDialogue> = {
 							if (KDDialogueEnemy()) {
 								if (KDRandom() < KDGameData.CurrentDialogMsgValue.JamPercent && KDDialogueEnemy() && !KDEnemyHasFlag(KDDialogueEnemy(), "nojam")) {
 									let e = KDDialogueEnemy();
-									KinkyDungeonSetEnemyFlag(e, "LockJammed", -1);
+									KinkyDungeonSetEnemyFlag(e, "LockJammed", 456);
 									KDGameData.CurrentDialogStage = "JammedRecent";
 									KDGameData.CurrentDialogMsg = "PrisonerJailPickJam";
-									KinkyDungeonSetFlag("LockJamPity", -1);
+									KinkyDungeonSetFlag("LockJamPity", 456);
 								} else {
 									KinkyDungeonSetFlag("LockJamPity", 0);
 									let e = KDDialogueEnemy();
