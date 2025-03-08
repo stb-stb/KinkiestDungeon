@@ -350,7 +350,7 @@ let KDCurses: Record<string, KDCursedDef> = {
 	"Will" : {
 		powerMult: 2,
 		activatecurse: true,
-		level: 2,
+		level: 3,
 		weight: (_item) => {
 			return 10;
 		},
@@ -358,7 +358,7 @@ let KDCurses: Record<string, KDCursedDef> = {
 			KDChangeWill("Will", "curse", "curse", -1);
 		},
 		condition: (_item) => {
-			return KinkyDungeonStatWill >= KinkyDungeonStatWillMax*0.99;
+			return KinkyDungeonStatWill >= 9.9 // willpower 100 na místo 100%
 		},
 		remove: (_item, _host) => {
 			// For free!
@@ -367,7 +367,7 @@ let KDCurses: Record<string, KDCursedDef> = {
 	"Mana" : {
 		powerMult: 2,
 		activatecurse: true,
-		level: 2,
+		level: 3,
 		weight: (_item) => {
 			return 10;
 		},
