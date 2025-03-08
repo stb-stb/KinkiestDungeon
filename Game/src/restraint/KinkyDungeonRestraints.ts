@@ -4941,6 +4941,8 @@ function KinkyDungeonAddRestraint (
 	flags?: Record<string, number>,
 ): number
 {
+	data = data ? { ...data, "restrainedSince": KinkyDungeonCurrentTick } : { "restrainedSince": KinkyDungeonCurrentTick };
+	data = data ? { ...data, "originalPower": restraint.power + powerBonus } : { "restrainedSince": restraint.power + powerBonus };
 	if (!NoActionPrune)
 		KDDelayedActionPrune(["Restrain"]);
 	if (restraint.bypass) Bypass = true;
@@ -5678,6 +5680,11 @@ function KDSuccessRemove(StruggleType: string, restraint: item, lockType: KDLock
 	else if (KinkyDungeonStatDistraction > KinkyDungeonStatDistractionMax*0.1) suff = "Aroused";
 	KinkyDungeonSendActionMessage(9, TextGet("KinkyDungeonStruggle" + StruggleType + "Success" + suff).replace("TargetRestraint", TextGet("Restraint" + KDRestraint(restraint).name)), KDBaseLightGreen, 2);
 
+	let will = 0;
+	if (restraintDuration(data) > KDRandom()*100 + 20) will = Math.max(0, Math.min(5, data.restraint?.data?.originalPower/5) - 30/restraintDuration(data));
+	if (restraintDuration(data) > KDRandom()*100 + 10 && destroy) will = Math.max(0, Math.min(5, data.restraint?.data?.originalPower/3) - 20/restraintDuration(data));
+	if (restraintDuration(data) > KDRandom()*200 + 30 && data.restraint?.data?.originalPower > KDRandom()*10+1) KinkyDungeonChangeRep("Ghost", -1);
+	if (will >= 0.1) KDChangeWill(data.struggleGroup, data.struggleType, "struggle", Math.min(1, will), true);
 	KinkyDungeonSendEvent("afterSuccessRemove", data);
 
 	KDSortInventory(KDPlayer());
@@ -5686,6 +5693,12 @@ function KDSuccessRemove(StruggleType: string, restraint: item, lockType: KDLock
 	KDGameData.DelayedActions = KDPruneSameStruggleActions(KDGameData.DelayedActions, group, index);
 
 	return destroy;
+}
+
+function restraintDuration(data): number {
+	if (data.restraint?.data?.restrainedSince > 0) {
+		return KinkyDungeonCurrentTick - data.restraint?.data?.restrainedSince;
+	} else return KinkyDungeonCurrentTick;
 }
 
 function KDPruneSameStruggleActions(list: KDDelayedAction[], group: string, index: number) : KDDelayedAction[]{
