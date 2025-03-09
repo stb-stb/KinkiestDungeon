@@ -19,8 +19,8 @@ let KDCurseUnlockList = {
 		"TakeDamageGlue",
 		"TakeDamageChain",
 		"OrgasmResist",
+		"HaveOrgasm",
 		"Mana",
-		"SacrificeMage",
 	],
 	"Dragon": [
 		"ShrineWill",
@@ -34,6 +34,7 @@ let KDCurseUnlockList = {
 		"ShrineElements",
 		"ShrineConjure",
 		"OrgasmResist",
+		"HaveOrgasm",
 		"SacrificeMage",
 	],
 	"CursedCollar": [
