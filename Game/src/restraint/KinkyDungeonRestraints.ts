@@ -869,6 +869,12 @@ function KinkyDungeonRemoveRestraintsWithShrine(shrine: string, maxCount?: numbe
 		}
 	}
 
+	let r = KinkyDungeonPlayerGetRestraintsWithLocks(Object.keys(KDLocks), true);
+	r.forEach(r => {
+		if (KDRandom() < 0.25) {
+			KinkyDungeonLock(r, "")
+		}
+	});
 
 	KinkyDungeonSendEvent("postRemoval", {item: null, keep: Keep, shrine: false, Link: false, dynamic: true, Character: KinkyDungeonPlayer});
 
