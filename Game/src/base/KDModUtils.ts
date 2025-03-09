@@ -411,6 +411,10 @@ function KinkyDungeonGetCurseByList(List: string | string[], includeOrig?: boole
 					&& (!maxLevel || KDCurses[key].level < maxLevel);
 			}).map((element: any) => {return element;});
 			temp.push(...keys);
+			if (l.includes("Shrine")) {
+				temp.push(...keys);
+				temp.push(...keys);
+			}
 		}
 	}
 	if (includeOrig) temp.push("");
