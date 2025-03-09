@@ -644,7 +644,13 @@ let KDInputTypes: Record<string, (data: any) => string> = {
 		let tiles = KinkyDungeonRescueTiles();
 		if (tiles.length > 0) {
 			KDSendStatus('goddess', data.type, 'helpRescue');
-			KinkyDungeonChangeRep(data.type, -10);
+			KinkyDungeonChangeRep(data.type, -5);
+				let r = KinkyDungeonPlayerGetRestraintsWithLocks(Object.keys(KDLocks), true);
+				r.forEach(r => {
+					if (KDRandom() < 0.25) {
+						KinkyDungeonLock(r, "")
+					}
+				});
 			tile = tiles[Math.floor(tiles.length * KDRandom())];
 			if (tile) {
 				KinkyDungeonMapSet(tile.x, tile.y, "$");
