@@ -2786,8 +2786,8 @@ function DialogueAddCursedEnchantedHexed(
 /** Returns 10% of current binding or 10, whichever is more, but not including protected bondage */
 function KDGetPlayerUntieBindAmt(enemy: entity): number {
 	let baseAmnt = Math.max(10, (enemy.boundLevel || 0) * 0.1);
-	if (!enemy.boundLevel || baseAmnt > enemy.boundLevel) baseAmnt = enemy.boundLevel;
-	let minimumBondage = KDGetExpectedBondageAmountTotal(enemy.id, enemy, false, true);
+	baseAmnt = Math.min(baseAmnt, enemy.boundLevel || 0);
+	let minimumBondage = KDGetExpectedBondageAmountTotal(enemy.id, enemy, false, false);
 	if (enemy.specialBoundLevel)
 		for (let sbt of Object.entries(enemy.specialBoundLevel)) {
 			if (KDSpecialBondage[sbt[0]]?.helpImmune) {
@@ -2825,6 +2825,9 @@ function KDUntieEnemy(enemy: entity, amount: number, includeConjured: boolean = 
 	}
 	if (enemy.boundLevel < 0) {
 		enemy.boundLevel = 0;
+	}
+	if (enemy.hp < 0.5) {
+		enemy.hp = 0.5;
 	}
 }
 

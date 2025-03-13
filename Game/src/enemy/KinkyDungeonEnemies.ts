@@ -4043,6 +4043,9 @@ function KinkyDungeonUpdateEnemies(maindelta: number, Allied: boolean) {
 					enemy.hp -= Math.max(0.1 * enemy.hp) + 1;
 				}
 			}
+			if (enemy.hp <= enemy.Enemy?.maxhp && enemy.boundLevel < 1 && !(enemy.hostile > 0)) {
+				enemy.hp += Math.max((enemy.Enemy?.maxhp - enemy.hp)/500, 0);
+			}
 		}
 	} else {
 		if (KinkyDungeonTorsoGrabCD > 0) KinkyDungeonTorsoGrabCD -= 1;
