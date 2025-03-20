@@ -2333,7 +2333,7 @@ const KinkyDungeonRestraints: restraint[] = [
 
 	},
 
-	{inventory: true, name: "DressBra", debris: "Fabric", inaccessible: true, Asset: "FuturisticBra2", Color: ['#6B48E0', '#F8BD01', '#6B48E0', '#6B48E0', '#F8BD01', '#6B48E0'], Group: "ItemBreast", LinkableBy: ["Ornate"], chastitybra: true, power: 8,
+	{inventory: true, name: "DressBra", debris: "Fabric", inaccessible: true, Asset: "FuturisticBra2", Color: ['#6B48E0', '#F8BD01', '#6B48E0', '#6B48E0', '#F8BD01', '#6B48E0'], Group: "ItemBreast", LinkableBy: ["Ornate"], chastitybra: true, DefaultLock: "White", power: 8,
 		weight: 2,
 		Model: "LaceBraDeco",
 		factionFilters: {
@@ -3332,7 +3332,7 @@ const KinkyDungeonRestraints: restraint[] = [
 		shrine: ["Leather", "Legbinders"]},
 
 
-	{inventory: true, arousalMode: true, name: "PrisonBelt", Asset: "PolishedChastityBelt", OverridePriority: 26, Color: "#444444", Group: "ItemPelvis", chastity: true,
+	{inventory: true, arousalMode: true, name: "PrisonBelt", Asset: "PolishedChastityBelt", OverridePriority: 26, Color: "#444444", Group: "ItemPelvis", chastity: true, DefaultLock: "Red",
 		Security: {
 			level_key: 2,
 			level_tech: 1,
@@ -3348,7 +3348,7 @@ const KinkyDungeonRestraints: restraint[] = [
 		},
 		power: 8, weight: 2, escapeChance: {"Struggle": -0.5, "Cut": -0.30, "Remove": 100.0, "Pick": 0.25},
 		enemyTags: {}, playerTags: {}, minLevel: 0, allFloors: true, shrine: ["NeoBelt", "Chastity", "Metal", "ChastityBelts"]},
-	{inventory: true, arousalMode: true, name: "PrisonBelt2", Asset: "OrnateChastityBelt", OverridePriority: 26, Color: ["#272727", "#AA0000"], Group: "ItemPelvis", chastity: true,
+	{inventory: true, arousalMode: true, name: "PrisonBelt2", Asset: "OrnateChastityBelt", OverridePriority: 26, Color: ["#272727", "#AA0000"], Group: "ItemPelvis", chastity: true, DefaultLock: "Blue",
 		Security: {
 			level_key: 3,
 			level_magic: 2,
@@ -5159,7 +5159,7 @@ const KinkyDungeonRestraints: restraint[] = [
 		good: true, alwaysKeep: true, showInQuickInv: true,
 		maxwill: 0, enemyTags: {}, playerTags: {"dustergag": 100}, minLevel: 0, allFloors: true, shrine: ["MuzzleGags", "Gags"]},
 	// Maid chastity.
-	{inventory: true, arousalMode: true, name: "MaidCBelt", Asset: "PolishedChastityBelt", OverridePriority: 26, Color: "Default", Group: "ItemPelvis", chastity: true, power: 9, weight: 0,
+	{inventory: true, arousalMode: true, name: "MaidCBelt", Asset: "PolishedChastityBelt", OverridePriority: 26, Color: "Default", Group: "ItemPelvis", chastity: true, DefaultLock: "Disc", power: 9, weight: 0,
 		Security: {
 			level_key: 3,
 		},
