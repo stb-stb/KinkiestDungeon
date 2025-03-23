@@ -477,6 +477,10 @@ function KDGetNearestExitTo(roomTo: string, mapX: number, mapY: number, x: numbe
 	let spOrig = Object.entries(mapData.ShortcutPositions || {});
 	let sp: KDPoint[] = [];
 	let mapSlot = KDGetWorldMapLocation(KDCoordToPoint(mapData));
+	if (mapSlot == undefined) {
+		console.error("Broken map, roomTo: " + roomTo + " mapX: " + mapX + " mapY: " + mapY + " x: " + x + " y: " + y);
+		return null;
+	}
 	let journeyslot = KDGameData.JourneyMap[(mapSlot.jx != undefined ? mapSlot.jx : 0) + ',' + (mapSlot.jy != undefined ? mapSlot.jy : y)];
 	for (let pos of spOrig) {
 		if (pos[0] == roomTo || (journeyslot?.SideRooms && journeyslot?.SideRooms[pos[0]] == roomTo)) {
