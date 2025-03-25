@@ -46,7 +46,7 @@ let KDMinimapLabels: Record<string, (_x: number, _y:number, force: boolean) => s
 	'H': (_x, _y, force) => {if (!force && !KDMMLabels_Other) return "";
 		return KinkyDungeonTilesGet(_x + "," + _y)?.MMLabel ?
 		TextGet("KDMinimapLabel_" + KinkyDungeonTilesGet(_x + "," + _y).MMLabel)
-		 : (KinkyDungeonTilesGet(_x + "," + _y).RoomType ? ">" + KDGetDungeonName({
+		 : (KinkyDungeonTilesGet(_x + "," + _y)?.RoomType ? ">" + KDGetDungeonName({
 			mapX: KDGetCurrentLocation().mapX,
 			mapY: KDGetCurrentLocation().mapY,
 			room: KinkyDungeonTilesGet(_x + "," + _y).RoomType

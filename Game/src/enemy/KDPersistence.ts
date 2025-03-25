@@ -794,7 +794,7 @@ function KDWanderPersistentNPCs(coord: WorldCoord, searchEntities: boolean): num
 		for (let id of cache) {
 			let PNPC = KDGetPersistentNPC(id, undefined, false);
 			// Only wander if the party leader isnt on the floor
-			if (PNPC && (!PNPC.partyLeader || !cache.includes(PNPC.partyLeader))) { //  && !PNPC.spawned
+			if (PNPC && (!PNPC.partyLeader || !cache.includes(PNPC.partyLeader)) && PNPC.entity?.faction != 'Player') { //  && !PNPC.spawned
 				let wanderAI = PNPC.wanderAI || "GoToMain";
 				let AI = KDIsInPartyID(PNPC.id) ? KDPersistentWanderAIList.PartyMember
 					: KDPersistentWanderAIList[wanderAI];
