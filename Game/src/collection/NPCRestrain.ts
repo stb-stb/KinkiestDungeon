@@ -40,7 +40,7 @@ function KDDrawNPCRestrain(npcID: number, restraints: Record<string, NPCRestrain
 	let YY = y;
 
 	/** First column is encase column */
-	let paddingFirstCol = 100;
+	let paddingFirstCol = 80;
 	let paddingX = 50;
 	let paddingY = 67;
 
