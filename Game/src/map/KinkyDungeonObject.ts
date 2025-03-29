@@ -221,6 +221,14 @@ let KDTileInteract: Record<string, (x: number, y: number, dist?: number) => bool
 				KDUI_Container_LastSelected = KDUI_CurrentContainer;
 				return true;
 			}
+			KDUI_CurrentContainer = KDGetContainer("Chest", {x: x, y: y}, KDGetCurrentLocation(), true)?.name;
+			if (KDUI_CurrentContainer) {
+				KDUI_ContainerBackScreen = KinkyDungeonDrawState;
+				KinkyDungeonDrawState = "Container";
+				KinkyDungeonCurrentFilter = "All";
+				KDUI_Container_LastSelected = "Chest";
+				return true;
+			}
 		return false;
 	},
 };
