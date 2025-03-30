@@ -114,7 +114,7 @@ let KDDialogueTriggers: Record<string, KinkyDialogueTrigger> = {
 		undefined, undefined),
 
 	"OfferResin": KDDialogueTriggerOffer("OfferResin", ["Latex", "Prisoner"], ["resinRestraints"],
-		["parole", "",],  ["Dom", "Brat", "Sub", ""],
+		["parole", "",],  ["Dom"],
 		["alchemist"], undefined, undefined, ["zombie", "skeleton", "robot"],
 		undefined, ["Released"]),
 
