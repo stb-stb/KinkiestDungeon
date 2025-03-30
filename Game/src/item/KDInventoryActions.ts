@@ -1070,7 +1070,6 @@ let KDInventoryAction: Record<string, KDInventoryActionDef> = {
 		valid: (_player, item) => {
 			if (KDGameData.ItemPriority[item.name] > 9) return false;
 			if (KDWeapon(item)?.unarmed) return false;
-			if (KDRestraint(item)?.noRecycle != undefined) return false;
 			return item?.type == Weapon || item?.type == LooseRestraint || item?.type == Consumable;
 		},
 		/** Happens when you click the button */
