@@ -46,8 +46,7 @@ function KDAdvanceTraining(): void {
 		//let training = entry[0];
 		let data = entry[1];
 		if (data.turns_total == 0) continue; // No advance
-		let trainingPercentage = Math.min(1, data.turns_total/KDTrainingSoftScale)
-			* (Math.max(0, data.turns_trained * 1.11 - data.turns_skipped)/data.turns_total);
+		let trainingPercentage = Math.min(1, (data.turns_total - data.turns_skipped)/KDTrainingSoftScale) * (data.turns_trained/data.turns_total);
 		if (KinkyDungeonStatsChoice.get("Mastery" + entry[0])) trainingPercentage *= 0.4;
 		data.training_points += 1 * trainingPercentage;
 		data.turns_total = 0;
