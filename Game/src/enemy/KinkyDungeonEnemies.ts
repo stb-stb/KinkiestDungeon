@@ -1718,7 +1718,7 @@ function KDEnemyHasHelp(enemy: entity): boolean {
 		return en != enemy
 			&& en.Enemy.bound
 			&& !KDHelpless(en)
-			&& KDBoundEffects(en) < 4
+			&& KDBoundEffects(en) < 3
 			&& !KDEnemyHasFlag(en, "imprisoned")
 			&& !KinkyDungeonIsDisabled(en)
 			&& !(en.disarm > 0)
@@ -4520,9 +4520,9 @@ function KinkyDungeonUpdateEnemies(maindelta: number, Allied: boolean) {
 							//KDClearItems(enemy);
 							if (!altType?.norestock)
 								KDRestockRestraints(enemy, enemy.Enemy.RestraintFilter?.restockPercent || 0.5);
-							if (enemy.hp < 0.5 * enemy.Enemy.maxhp) {
+							if (enemy.hp < 0.25 * enemy.Enemy.maxhp) {
 								// Todo unify heal
-								enemy.hp = Math.min(enemy.Enemy.maxhp, enemy.hp + 0.1);
+								enemy.hp = Math.min(enemy.Enemy.maxhp, enemy.hp + 0.05);
 							}
 						}
 					}
@@ -10489,7 +10489,7 @@ function KDEnemyStruggleTurn(enemy: entity, delta: number, allowStruggleAlwaysTh
 		enemy.specialBoundLevel = newBound.specialBoundLevel;
 
 		let SR = SM * (10 + Math.pow(Math.max(0.01, enemy.hp), 0.75));
-		if (SR <= 0 || KDRandom() < 0.1) {
+		if (SR <= 0 || KDRandom() < 0.2) {
 			KDAddThought(enemy.id, "GiveUp", 5, SR <= 0 ? 4 : 1);
 		} else {
 			if (KDLoosePersonalities.includes(enemy.personality)) {
@@ -10529,8 +10529,8 @@ function KDEnemyStruggleTurn(enemy: entity, delta: number, allowStruggleAlwaysTh
 				struggleNPCTarget.slot,
 				struggleNPCTarget.inv,
 				KDEntityHasFlag(enemy, "bound") ? 0 :
-					-0.1 * struggleNPCTarget.target + 0.1 * (enemy.strugglePoints || 0) +
-					(1 + struggleNPCTarget.points) / (3 + struggleNPCTarget.target + struggleNPCTarget.points)
+					(-0.1 * struggleNPCTarget.target + 0.1 * (enemy.strugglePoints || 0) +
+					(1 + struggleNPCTarget.points) / (3 + struggleNPCTarget.target + struggleNPCTarget.points))/2
 			);
 			if (result == "Struggle") {
 				if (!enemy.strugglePoints) enemy.strugglePoints = 0;
