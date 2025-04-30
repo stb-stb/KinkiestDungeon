@@ -1,7 +1,7 @@
 'use strict';
 
 let KDTrainingTypes = [
-	"Heels",
+	"Heels","Chastity"
 ];
 
 function KDGetHeelTraining(): number {
