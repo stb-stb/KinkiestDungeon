@@ -9,6 +9,21 @@ let KinkyDungeonInputQueue: {type: string, data: any}[] = [];
  */
 let KDInputTypes: Record<string, (data: any) => string> = {
 	"move": (data) => {
+		if (KinkyDungeonChastityMult() > 0.1 && KDGameData.OrgasmStamina > 0) {
+			let training = KDGameData.Training["Chastity"]?.training_stage+1 || 1;
+			let desire = KinkyDungeonStatDistraction*10;
+			let will = Math.max(KinkyDungeonStatWill * 10, 1);
+			let frustration = (KinkyDungeonGoddessRep.Frustration+50)*0.75 + (KinkyDungeonGoddessRep.Passion + 50)*0.25;
+
+			if ((Math.sqrt(frustration*desire)-4*training > will/4) && (KDRandom()*training < (Math.sqrt(desire)+Math.sqrt(2*frustration))/500)) {
+				console.log("I have to keep thinking about something else.")
+				if (KDRandom() < 0.2) {
+					return KDInputTypes["tryOrgasm"](data);
+				} else {
+					return KDInputTypes["tryPlay"](data);
+				}
+			}
+		}
 		KDInteracting = false;
 		KinkyDungeonToggleAutoPass = data.AutoPass;
 		KinkyDungeonToggleAutoSprint = data.sprint;

@@ -2,7 +2,7 @@
 let KDBaseTrainingMinRatioPercent = 0.5;
 
 let KDTrainingTypes = [
-	"Heels",
+	"Heels","Chastity"
 ];
 
 function KDGetHeelTraining(): number {

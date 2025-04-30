@@ -11984,6 +11984,11 @@ let KDEventMapGeneric: Record<string, Record<string, (e: string, data: any) => v
 					KDGameData.HeelPower <= 0 && !danger, amt, mult);
 			}
 		},
+		"trainChastity": (_e, _data) => {
+			if (KinkyDungeonLastAction != "Wait") {
+				KDTickTraining("Chastity", KinkyDungeonChastityMult()>0.1 && KDGameData.OrgasmStamina <= 0, KinkyDungeonHasWill(0.1), 0.01, KinkyDungeonChastityMult());
+			}
+		},
 		"runes": (_e, data) => {
 			if (data.delta > 0) {
 				let dd: KDRuneCountData = {
